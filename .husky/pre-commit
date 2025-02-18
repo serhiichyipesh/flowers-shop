@@ -1,0 +1,5 @@
+git add .
+pnpm format
+pnpm lint:fix
+pnpm tsc
+git add .

@@ -1,0 +1,35 @@
+{
+  "home_page": {
+    "home_title": "Головна",
+    "best_sellers_title": "Хіти продажу",
+    "hero_title_1": "Приносимо вам",
+    "hero_title_2": "найкращі квіти",
+    "shop_now": "Купити зараз"
+  },
+  "nav_bar": {
+    "home": "Головна",
+    "flowers": "Квіти",
+    "contact": "Контакти",
+    "change_language": "Змінити мову"
+  },
+  "flower_card": {
+    "add_to_cart": "Додати до кошику"
+  },
+  "flowers_page": {
+    "title": "Всі квіти",
+    "name_title": "Назва",
+    "from_price": "З ціни",
+    "to_price": "До ціни",
+    "apply_price_filters": "Застосувати фільтри цін",
+    "by_relevancy": "За релевантністю",
+    "from_expensive": "Від дорогих",
+    "from_cheap": "Від дешевих",
+    "reset_filters": "Скинути фільтри",
+    "no_flowers_found": "Квіти не знайдено"
+  },
+  "errors": {
+    "error_title": "Помилка",
+    "invalid_price_range": "Невірний діапазон ціни: \"З ціни\" повинен бути меншим \"До ціни\"",
+    "oops": "Ой! Щось пішло не так. Будь ласка, спробуйте пізніше."
+  }
+}

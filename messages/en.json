@@ -1,0 +1,42 @@
+{
+  "home_page": {
+    "home_title": "Home",
+    "best_sellers_title": "Best Sellers",
+    "hero_title_1": "Bringing you",
+    "hero_title_2": "the best flowers",
+    "shop_now": "Shop Now"
+  },
+  "nav_bar": {
+    "home": "Home",
+    "flowers": "Flowers",
+    "contact": "Contact",
+    "change_language": "Change Language"
+  },
+  "flower_card": {
+    "add_to_cart": "Add to Cart"
+  },
+  "flowers_page": {
+    "title": "All flowers",
+    "name_title": "Name",
+    "from_price": "From price",
+    "to_price": "To price",
+    "apply_price_filters": "Apply price filters",
+    "by_relevancy": "By relevancy",
+    "from_expensive": "From expensive",
+    "from_cheap": "From cheap",
+    "reset_filters": "Reset filters",
+    "no_flowers_found": "No flowers found"
+  },
+  "errors": {
+    "error_title": "Error",
+    "invalid_price_range": "Invalid price range: \"From price\" should be less than \"To price\"",
+    "oops": "Oops! Something went wrong. Please try again later.",
+    "something_went_wrong": "Something went wrong",
+    "try_again": "Try again",
+    "not_found": "404 Not found",
+    "could_not_find_requested_page": "Could not find the requested page"
+  },
+  "common": {
+    "go_back": "Go back"
+  }
+}

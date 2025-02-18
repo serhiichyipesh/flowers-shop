@@ -1,0 +1,35 @@
+{
+  "home_page": {
+    "home_title": "Главная",
+    "best_sellers_title": "Хиты продаж",
+    "hero_title_1": "Приносим вам",
+    "hero_title_2": "лучшие цветы",
+    "shop_now": "Купить сейчас"
+  },
+  "nav_bar": {
+    "home": "Главная",
+    "flowers": "Цветы",
+    "contact": "Контакты",
+    "change_language": "Сменить язык"
+  },
+  "flower_card": {
+    "add_to_cart": "Добавить в корзину"
+  },
+  "flowers_page": {
+    "title": "Все цветы",
+    "name_title": "Название",
+    "from_price": "С цены",
+    "to_price": "До цены",
+    "apply_price_filters": "Применить фильтры цен",
+    "by_relevancy": "По релевантности",
+    "from_expensive": "От дорогих",
+    "from_cheap": "От дешевых",
+    "reset_filters": "Сбросить фильтры",
+    "no_flowers_found": "Цветы не найдены"
+  },
+  "errors": {
+    "error_title": "Ошибка",
+    "invalid_price_range": "Неверный диапазон цен: \"С цены\" должен быть меньше \"До цены\"",
+    "oops": "Ой! Что-то пошло не так. Пожалуйста, попробуйте позже."
+  }
+}
