@@ -21,18 +21,19 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Dependencies
-        run: npm i --legacy-peer-deps
+        run: npm install --legacy-peer-deps
 
-      - name: Run Next.js ESLint
-        run: npm run lint
+      - name: Run Next.js ESLint with SARIF output
+        run: npx next lint --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
 
-      - name: Run Steiger with SARIF output
-        env:
-          SARIF_ESLINT_IGNORE_SUPPRESSED: 'true'
-        run: npx steiger . --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
-        continue-on-error: true
+      - name: Run Steiger
+        run: npx steiger . --fix
+
+      - name: Check if SARIF file exists
+        run: ls -l eslint-results.sarif || echo "SARIF file not found!"
 
       - name: Upload analysis results to GitHub
+        if: success()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: eslint-results.sarif
