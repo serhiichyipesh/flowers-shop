@@ -1,4 +1,4 @@
-name: ESLint
+name: Lint & Build Checks
 
 on:
   push:
@@ -6,35 +6,82 @@ on:
   pull_request:
     branches: ['main']
   schedule:
-    - cron: '26 3 * * 2'
+    - cron: '26 3 * * 2' # Runs weekly
 
 jobs:
-  eslint:
-    name: Run ESLint scanning
+  setup:
+    name: Install Dependencies
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      security-events: write
-      actions: read
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Cache Node Modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Clean npm cache
+        run: npm cache clean --force
+
       - name: Install Dependencies
         run: npm install --legacy-peer-deps
 
-      - name: Run Next.js ESLint with SARIF output
+  eslint:
+    name: Run ESLint
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Restore Node Modules Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Run ESLint
         run: npx next lint --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
 
-      - name: Run Steiger
-        run: npx steiger . --fix
-
-      - name: Check if SARIF file exists
-        run: ls -l eslint-results.sarif || echo "SARIF file not found!"
-
-      - name: Upload analysis results to GitHub
-        if: success()
+      - name: Upload ESLint Results
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: eslint-results.sarif
-          wait-for-processing: true
+
+  prettier:
+    name: Run Prettier
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Restore Node Modules Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Run Prettier Check
+        run: npm run format -- --check
+
+  tsc:
+    name: TypeScript Check
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Restore Node Modules Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+
+      - name: Run TypeScript Check
+        run: npm run tsc
